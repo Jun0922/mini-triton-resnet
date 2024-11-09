@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: resnet-training-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: resnet-training
+          image: resnet-training:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - |
+              python main.py
+          volumeMounts:
+            - name: data-storage
+              mountPath: /src/data
+            - name: model-storage
+              mountPath: /src/saved_models
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: model-storage-pvc
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: data-storage-pvc
+      restartPolicy: Never
+  backoffLimit: 3
