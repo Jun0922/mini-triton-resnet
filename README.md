@@ -57,7 +57,8 @@ cd /mnt/data/model-storage/ConvNets/ResNet/lightning_logs/version_0/checkpoints
 exit
 ```
 
-## triton 서버 실행
+
+## 2. triton 서버 실행
 ```
 # k8s/deployment-triton-server.yaml 을 열어서 
 # env의 BEST_MODEL_PATH 에 위에서 확인한 경로를 ConvNets/~ 부터 ckpt 파일까지 기입
@@ -66,7 +67,8 @@ kubectl apply -f ./k8s/deployment-triton-server.yaml
 # minikube dashboard 에서 해당 pod 가 배포되어 정상적으로 로그가 찍히는지 확인
 ```
 
-## triton client 실행
+
+## 3. triton client 실행
 ```
 # project root 로 이동 (~/mini-triton-resnet)
 # triton_server 가 정상적으로 기동한 후에 배포해야 오류나지 않음
