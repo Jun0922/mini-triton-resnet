@@ -1,17 +1,12 @@
 import os
 import urllib.request
-from types import SimpleNamespace
 from urllib.error import HTTPError
 
 import pytorch_lightning as pl
-import torch.nn as nn
 import torch
-import torch.optim as optim
 import torch.utils.data as data
-from mpl_toolkits.mplot3d.proj3d import transform
-
-from torchvision.datasets import MNIST
 from torchvision import transforms
+from torchvision.datasets import MNIST
 
 
 # Path to the folder where the datasets are/should be downloaded (e.g. CIFAR10)

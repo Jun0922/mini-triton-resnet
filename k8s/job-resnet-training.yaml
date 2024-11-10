@@ -9,6 +9,9 @@ spec:
         - name: resnet-training
           image: resnet-training:latest
           imagePullPolicy: IfNotPresent
+          env:
+            - name: TRAIN_EPOCHS
+              value: "10"
           command:
             - /bin/sh
             - -c

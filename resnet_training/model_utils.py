@@ -8,7 +8,8 @@ from CIFARModule import CIFARModule
 # Callbacks
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint  # noqa: E402
 
-TRAIN_EPOCHS=3
+TRAIN_EPOCHS=int(os.getenv('TRAIN_EPOCHS', 5))
+print("Train Epochs | ", TRAIN_EPOCHS)
 
 def train_model(model_name, save_name=None, **kwargs):
     """Train model.

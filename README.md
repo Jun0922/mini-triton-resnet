@@ -9,6 +9,14 @@ docker desktop 설정에서 resources 탭에 virtual disk limit 을 150g 정도�
 eval $(minikube -p minikube docker-env)
 ```
 
+# pv / pvc 배포
+```
+kubectl apply -f ./k8s/pv-data-storage.yaml
+kubectl apply -f ./k8s/pvc-data-storage.yaml
+kubectl apply -f ./k8s/pv-model-storage.yaml
+kubectl apply -f ./k8s/pvc-model-storage.yaml
+```
+
 # 이미지 빌드
 ```
 docker build
