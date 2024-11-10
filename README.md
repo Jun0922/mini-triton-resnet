@@ -57,6 +57,7 @@ cd /mnt/data/model-storage/ConvNets/ResNet/lightning_logs/version_0/checkpoints
 exit
 ```
 
+
 ## 2. triton 서버 실행
 ```
 # k8s/deployment-triton-server.yaml 을 열어서 
@@ -65,6 +66,7 @@ exit
 kubectl apply -f ./k8s/deployment-triton-server.yaml
 # minikube dashboard 에서 해당 pod 가 배포되어 정상적으로 로그가 찍히는지 확인
 ```
+
 
 ## 3. triton client 실행
 ```
