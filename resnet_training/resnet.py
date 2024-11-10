@@ -164,9 +164,7 @@ class ResNet(nn.Module):
                 nn.init.constant_(m.bias, 0)
 
     def forward(self, x):
-        # print("#############################################")
         # print(x.shape)
-        # print("#############################################")
         x = self.input_net(x)
         x = self.blocks(x)
         x = self.output_net(x)

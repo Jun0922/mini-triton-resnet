@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mini-triton-server-service
+  labels:
+    app: mini-triton-server
+spec:
+  selector:
+    app: mini-triton-server
+  ports:
+    - protocol: TCP
+      port: 8001          # 외부에 노출할 포트
+      targetPort: 8001    # Pod의 gRPC 포트
+  type: ClusterIP

@@ -19,9 +19,9 @@ spec:
           image: mini-triton-server:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8000   # gRPC 포트 (필요 시 수정)
-            - containerPort: 8001   # HTTP 포트 (필요 시 수정)
-            - containerPort: 8002   # Metrics 포트 (필요 시 수정)
+            - containerPort: 8000
+            - containerPort: 8001   # gRPC
+            - containerPort: 8002
           volumeMounts:
             - name: data-storage
               mountPath: /src/data

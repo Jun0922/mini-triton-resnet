@@ -1,0 +1,7 @@
+FROM resnet-training:latest
+
+WORKDIR /src
+RUN rm -rf *
+COPY ../triton_client .
+
+RUN pip install -r requirements.txt
