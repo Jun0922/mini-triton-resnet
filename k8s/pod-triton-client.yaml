@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: triton-client-pod
+  labels:
+    app: triton-client
+spec:
+  containers:
+    - name: triton-client
+      image: triton-client:latest
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: GRPC_SERVER_URL
+          value: "mini-triton-server-service:8001"  # gRPC 서버의 Service 이름과 포트 설정
+      volumeMounts:
+        - name: data-storage
+          mountPath: /data
+      command:
+        - /bin/sh
+        - -c
+        - |
+          python client.py
+  volumes:
+    - name: data-storage
+      persistentVolumeClaim:
+        claimName: data-storage-pvc
+  restartPolicy: Never

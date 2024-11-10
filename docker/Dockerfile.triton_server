@@ -1,0 +1,5 @@
+FROM nvcr.io/nvidia/tritonserver:24.10-py3
+
+WORKDIR /model_repository
+COPY ../model_repository .
+RUN pip install -r requirements.txt

@@ -1,0 +1,9 @@
+torchmetrics >=1.0,<1.5
+pytorch-lightning >=2.0,<2.5
+seaborn
+torchvision
+tensorboard
+torch >=1.8.1,<2.5
+tabulate
+matplotlib
+numpy <3.0
