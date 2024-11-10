@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mini-triton-server
+  labels:
+    app: mini-triton-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mini-triton-server
+  template:
+    metadata:
+      labels:
+        app: mini-triton-server
+    spec:
+      containers:
+        - name: mini-triton-server
+          image: mini-triton-server:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000   # gRPC 포트 (필요 시 수정)
+            - containerPort: 8001   # HTTP 포트 (필요 시 수정)
+            - containerPort: 8002   # Metrics 포트 (필요 시 수정)
+          volumeMounts:
+            - name: data-storage
+              mountPath: /src/data
+            - name: model-storage
+              mountPath: /src/saved_models
+          env:
+            - name: BEST_MODEL_PATH
+              value: ConvNets/ResNet/lightning_logs/version_0/checkpoints/epoch=1-step=858.ckpt
+          command:
+            - /bin/sh
+            - -c
+            - |
+              cp /src/saved_models/$BEST_MODEL_PATH /model_repository/best_resnet.ckpt
+              sleep 1
+              tritonserver --model-repository /model_repository
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: model-storage-pvc
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: data-storage-pvc
