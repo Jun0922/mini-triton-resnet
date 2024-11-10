@@ -14,6 +14,8 @@ DATASET_PATH = "/data"
 
 acc_infer_time_ms = 0
 
+print("triton-client initialized...")
+
 with grpcclient.InferenceServerClient("mini-triton-server-service:8001") as client:
     test_set = MNIST(
         root=DATASET_PATH, train=False, download=False,
